@@ -1,4 +1,9 @@
-import com.template.kmp.randomuser.NetworkConstants
+package com.template.kmp.randomuser.network
+
+import RandomUserDto
+import RandomUserError.SERVICE_UNAVAILABLE
+import RandomUserError.UNKNOWN_ERROR
+import RandomUserException
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -16,9 +21,9 @@ class KtorRandomUserClient(
         parameter("results", count)
       }.body()
     } catch (e: IOException) {
-      throw RandomUserException(RandomUserError.SERVICE_UNAVAILABLE)
+      throw RandomUserException(SERVICE_UNAVAILABLE)
     } catch (e: Exception) {
-      throw RandomUserException(RandomUserError.UNKNOWN_ERROR)
+      throw RandomUserException(UNKNOWN_ERROR)
     }
   }
 }
