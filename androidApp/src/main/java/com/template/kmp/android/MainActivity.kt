@@ -8,33 +8,36 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.template.kmp.Greeting
+import com.template.kmp.randomuser.ui.RandomUserViewModel
+import com.template.kmp.android.screens.UserListScreen
 
 class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            MyApplicationTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    GreetingView(Greeting().greet())
-                }
-            }
+  private val viewModel: RandomUserViewModel by viewModels()
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContent {
+      MyApplicationTheme {
+        Surface(
+          modifier = Modifier.fillMaxSize(),
+          color = MaterialTheme.colorScheme.background
+        ) {
+          UserListScreen(viewModel)
         }
+      }
     }
+  }
 }
 
 @Composable
 fun GreetingView(text: String) {
-    Text(text = text)
+  Text(text = text)
 }
 
 @Preview
 @Composable
 fun DefaultPreview() {
-    MyApplicationTheme {
-        GreetingView("Hello, Android!")
-    }
+  MyApplicationTheme {
+    GreetingView("Hello, Android!")
+  }
 }
