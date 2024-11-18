@@ -1,3 +1,5 @@
+package com.template.kmp.randomuser.models
+
 @kotlinx.serialization.Serializable
 data class RandomUserDto(
     val results: List<UserDto>,

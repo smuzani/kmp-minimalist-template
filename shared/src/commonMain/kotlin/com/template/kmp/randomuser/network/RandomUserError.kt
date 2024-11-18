@@ -1,3 +1,5 @@
+package com.template.kmp.randomuser.network
+
 enum class RandomUserError {
     SERVICE_UNAVAILABLE,
     UNKNOWN_ERROR

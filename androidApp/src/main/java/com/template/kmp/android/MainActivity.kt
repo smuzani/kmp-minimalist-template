@@ -1,19 +1,25 @@
 package com.template.kmp.android
 
+import com.template.kmp.android.screens.Routes
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.template.kmp.randomuser.ui.RandomUserViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.template.kmp.android.screens.UserListScreen
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-  private val viewModel: RandomUserViewModel by viewModels()
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContent {
@@ -22,7 +28,7 @@ class MainActivity : ComponentActivity() {
           modifier = Modifier.fillMaxSize(),
           color = MaterialTheme.colorScheme.background
         ) {
-          UserListScreen(viewModel)
+          AppRoot()
         }
       }
     }
@@ -30,14 +36,19 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun GreetingView(text: String) {
-  Text(text = text)
-}
-
-@Preview
-@Composable
-fun DefaultPreview() {
-  MyApplicationTheme {
-    GreetingView("Hello, Android!")
+fun AppRoot() {
+  val navController = rememberNavController()
+  NavHost(
+    navController = navController,
+    startDestination = Routes.USER_LIST
+  ) {
+    composable(route = Routes.USER_LIST) {
+      val viewModel = hiltViewModel<AndroidRandomUserViewModel>()
+      val state by viewModel.state.collectAsState()
+      UserListScreen(
+        state = state,
+        onEvent = viewModel::onEvent
+      )
+    }
   }
 }

@@ -1,6 +1,6 @@
 package com.template.kmp.randomuser.network
 
-import RandomUserDto
+import com.template.kmp.randomuser.models.RandomUserDto
 
 interface RandomUserClient {
     suspend fun getRandomUsers(count: Int = 10): RandomUserDto

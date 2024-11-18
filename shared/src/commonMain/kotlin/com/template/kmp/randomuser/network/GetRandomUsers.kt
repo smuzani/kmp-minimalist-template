@@ -1,7 +1,6 @@
 package com.template.kmp.randomuser.network
 
-import RandomUserDto
-import RandomUserException
+import com.template.kmp.randomuser.models.RandomUserDto
 import com.template.kmp.util.Resource
 
 class GetRandomUsers(

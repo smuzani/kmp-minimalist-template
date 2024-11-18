@@ -1,9 +1,8 @@
 package com.template.kmp.randomuser.network
 
-import RandomUserDto
-import RandomUserError.SERVICE_UNAVAILABLE
-import RandomUserError.UNKNOWN_ERROR
-import RandomUserException
+import com.template.kmp.randomuser.models.RandomUserDto
+import com.template.kmp.randomuser.network.RandomUserError.SERVICE_UNAVAILABLE
+import com.template.kmp.randomuser.network.RandomUserError.UNKNOWN_ERROR
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get

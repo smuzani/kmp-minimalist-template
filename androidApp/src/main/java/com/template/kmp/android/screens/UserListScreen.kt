@@ -1,6 +1,7 @@
 package com.template.kmp.android.screens
 
-import UserCard
+import com.template.kmp.randomuser.ui.RandomUserEvent
+import com.template.kmp.android.components.UserCard
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,20 +13,17 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.template.kmp.randomuser.ui.RandomUserViewModel
+import com.template.kmp.randomuser.ui.RandomUserState
 
 @Composable
 fun UserListScreen(
-  viewModel: RandomUserViewModel,
+  state: RandomUserState,
+  onEvent: (RandomUserEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  val state by viewModel.state.collectAsState()
-
   Box(modifier = modifier.fillMaxSize()) {
     when {
       state.isLoading -> {
@@ -37,7 +35,7 @@ fun UserListScreen(
       state.error != null -> {
         ErrorView(
           message = "Error loading users: ${state.error}",
-          onRetry = { viewModel.loadUsers() },
+          onRetry = { onEvent(RandomUserEvent.RetryLoadUsers) },
           modifier = Modifier.align(Alignment.Center)
         )
       }
