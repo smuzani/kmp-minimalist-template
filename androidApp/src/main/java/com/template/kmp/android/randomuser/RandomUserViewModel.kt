@@ -1,4 +1,4 @@
-package com.template.kmp.android
+package com.template.kmp.android.randomuser
 
 import com.template.kmp.randomuser.ui.RandomUserEvent
 import androidx.lifecycle.ViewModel

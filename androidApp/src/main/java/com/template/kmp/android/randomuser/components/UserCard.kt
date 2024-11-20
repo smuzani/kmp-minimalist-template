@@ -1,4 +1,4 @@
-package com.template.kmp.android.components
+package com.template.kmp.android.randomuser.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

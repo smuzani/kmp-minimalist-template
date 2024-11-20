@@ -1,7 +1,7 @@
-package com.template.kmp.android.screens
+package com.template.kmp.android.randomuser.screens
 
 import com.template.kmp.randomuser.ui.RandomUserEvent
-import com.template.kmp.android.components.UserCard
+import com.template.kmp.android.randomuser.components.UserCard
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.template.kmp.randomuser.ui.RandomUserEvent.RetryLoadUsers
 import com.template.kmp.randomuser.ui.RandomUserState
 
 @Composable
@@ -35,7 +36,7 @@ fun UserListScreen(
       state.error != null -> {
         ErrorView(
           message = "Error loading users: ${state.error}",
-          onRetry = { onEvent(RandomUserEvent.RetryLoadUsers) },
+          onRetry = { onEvent(RetryLoadUsers) },
           modifier = Modifier.align(Alignment.Center)
         )
       }

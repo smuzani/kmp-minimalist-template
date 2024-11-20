@@ -4,8 +4,10 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
 
 actual open class CommonFlow<T> actual constructor(
   private val flow: Flow<T>
@@ -25,8 +27,11 @@ actual open class CommonFlow<T> actual constructor(
   fun subscribe(
     onCollect: (T) -> Unit
   ): DisposableHandle {
+    // Use SupervisorJob so sibling coroutines keep running
+    val scope = CoroutineScope(Dispatchers.Main + SupervisorJob())
+    
     return subscribe(
-      coroutineScope = GlobalScope,
+      coroutineScope = scope,
       dispatcher = Dispatchers.Main,
       onCollect = onCollect
     )

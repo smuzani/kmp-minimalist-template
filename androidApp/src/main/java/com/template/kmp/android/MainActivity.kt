@@ -1,6 +1,5 @@
 package com.template.kmp.android
 
-import com.template.kmp.android.screens.Routes
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,7 +14,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.template.kmp.android.screens.UserListScreen
+import com.template.kmp.android.randomuser.AndroidRandomUserViewModel
+import com.template.kmp.android.randomuser.screens.Routes
+import com.template.kmp.android.randomuser.screens.UserListScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

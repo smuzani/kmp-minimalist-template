@@ -1,4 +1,4 @@
-package com.template.kmp.android.di
+package com.template.kmp.android.randomuser.di
 
 import com.template.kmp.network.HttpClientFactory
 import com.template.kmp.randomuser.network.GetRandomUsers
