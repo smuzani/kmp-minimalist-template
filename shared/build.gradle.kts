@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.github.smuzani"
-version = "0.1.1"
+version = "0.1.3"
 
 kotlin {
   androidTarget()
@@ -101,12 +101,13 @@ publishing {
                 password = System.getenv("GITHUB_TOKEN")
             }
         }
+        maven("https://jitpack.io")
     }
     publications {
         withType<MavenPublication> {
             groupId = "com.github.smuzani"
             artifactId = "kmp-minimalist-template"
-            version = "0.1.1"
+            version = "0.1.3"
         }
     }
 }
