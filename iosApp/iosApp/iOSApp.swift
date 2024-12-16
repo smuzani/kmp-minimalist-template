@@ -10,6 +10,9 @@ struct iOSApp: App {
 		WindowGroup {
             NavigationView {
                 ContentView(appModule: appModule)
+                    .onAppear {
+                        appModule.testSDK(apiKey: "asdads")
+                    }
             }
 		}
 	}

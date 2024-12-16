@@ -1,15 +1,22 @@
 PODS:
-  - shared (1.0)
+  - shared (1.0):
+    - XenditFingerprintSDK (= 1.0.1)
+  - XenditFingerprintSDK (1.0.1)
 
 DEPENDENCIES:
   - shared (from `../shared`)
+
+SPEC REPOS:
+  trunk:
+    - XenditFingerprintSDK
 
 EXTERNAL SOURCES:
   shared:
     :path: "../shared"
 
 SPEC CHECKSUMS:
-  shared: 96c066cfd2b0eab0963c51fee6cb6673e8cbba1a
+  shared: 01ed56dd75048564a1c692b222c6b63f76014d61
+  XenditFingerprintSDK: 29410a2dcf467fe33d6e0167f590deae47c753ee
 
 PODFILE CHECKSUM: 78d6cc1b71b232202c48a29d4e6c34972c534c73
 
