@@ -3,7 +3,12 @@ plugins {
   alias(libs.plugins.kotlin.native.cocoapods)
   alias(libs.plugins.android.library)
   alias(libs.plugins.kotlin.serialization)
+  id("maven-publish")
 }
+
+group = "com.github.smuzani"
+version = "0.1.1"
+
 kotlin {
   androidTarget()
   iosX64()
@@ -64,6 +69,46 @@ kotlin {
       iosSimulatorArm64Test.dependsOn(this)
     }
   }
+
+  androidTarget {
+    compilations.all {
+      kotlinOptions {
+        jvmTarget = "17"
+      }
+    }
+    publishLibraryVariants("release", "debug")
+  }
+
+  // disable warning on expect/actual
+  targets.configureEach {
+    compilations.configureEach {
+      compileTaskProvider.configure {
+        compilerOptions {
+          freeCompilerArgs.add("-Xexpect-actual-classes")
+        }
+      }
+    }
+  }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/smuzani/kmp-minimalist-template")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+    publications {
+        withType<MavenPublication> {
+            groupId = "com.github.smuzani"
+            artifactId = "kmp-minimalist-template"
+            version = "0.1.0"
+        }
+    }
 }
 
 android {
